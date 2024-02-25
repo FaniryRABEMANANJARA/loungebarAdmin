@@ -19,31 +19,19 @@ class ProduitController extends Controller
     public function index(Request $request)
     {
         // Commencez par récupérer tous les produits
-        $query = Produit::query();
+        $query = DB::table('fullproduit')->select('id_produit','nom_produit', 'description', 'prix', 'peremption', 'type_unite', 'stock', 'categorie','created_at')
+        ->where('etat',0);
+         // Ajoutez le filtre de recherche par nom de produit s'il est présent dans la requête
+         if ($request->has('nom_produit')) {
+        $query->where('nom_produit', 'like', '%' . $request->input('nom_produit') . '%');
+    }
+        // Terminez la construction de la requête
+        $query->orderBy('peremption', 'DESC');
     
-        // Appliquez les filtres de recherche s'ils sont présents dans la requête
-        if ($request->has('nom_produit')) {
-            $query->where('nom_produit', 'like', '%' . $request->input('nom_produit') . '%');
-        }
-    
-        if ($request->has('stock')) {
-            $query->where('stock', '>=', $request->input('stock'));
-        }
-    
-        if ($request->has('prix')) {
-            $query->where('prix', '<=', $request->input('prix'));
-        }
-        // Ajoutez la condition pour l'état 0
-    $query->where('etat', 0);
-    
-        // Obtenez les produits filtrés
-        $produits = $query->get();
-
-        $fullproduit = DB::table('fullproduit')->select('id_produit','nom_produit', 'description', 'prix', 'peremption', 'type_unite', 'stock', 'categorie','created_at')->orderBy('peremption','DESC')->get();
-
-    
+        // Paginer par 10 éléments par page (ajustez selon vos besoins)
+        $fullproduit = $query->paginate(10);
         // Passez les produits filtrés à la vue
-        return view('produit', compact('produits','fullproduit'));
+        return view('produit', compact('fullproduit'));
     }
     
     public function dashboard(Request $request)
@@ -76,15 +64,6 @@ class ProduitController extends Controller
             $query->where('nom', 'like', '%' . $request->input('nom') . '%');
         }
     
-        // if ($request->has('stock')) {
-        //     $query->where('stock', '>=', $request->input('stock'));
-        // }
-    
-        // if ($request->has('prix')) {
-        //     $query->where('prix', '<=', $request->input('prix'));
-        // }
-        // Ajoutez la condition pour l'état 0
-    //$query->where('role', "client");
     
         // Obtenez les utilisateurs filtrés
         $categorie = $query->get();

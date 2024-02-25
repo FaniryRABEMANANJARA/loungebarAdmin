@@ -48,7 +48,7 @@
             <div class="card-header pb-0">
               <h6>Tableaux des produits</h6>
               <a href="{{route('ajoutProduit')}}" class="btn btn-success " h><i class="fa fa-plus" aria-hidden="true"></i></a>
-              <form action="" method="GET">
+              <form action="{{ route('produit') }}" method="GET">
               <!-- Ajoutez les champs de recherche dont vous avez besoin -->
               <input type="text" name="nom_produit" placeholder="Nom produit">
               <!-- <input type="number" name="stock_min" placeholder="Stock minimum">
@@ -141,8 +141,13 @@
                       </td>
                     </tr>
                     @endforeach
+                    
+    <!-- {{ $fullproduit->links() }} -->
+   
+
                     </tbody>
                 </table>
+                
               </div>
             </div>
           </div>
