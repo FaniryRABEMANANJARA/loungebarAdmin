@@ -67,7 +67,7 @@ class ProduitController extends Controller
     $query->where('etat', 0);
     
         // Obtenez les produits filtrés
-        $produits = $query->get();
+        $produits = $query->orderby('peremption','desc')->get();
     
         $query = Categorie::query();
     
