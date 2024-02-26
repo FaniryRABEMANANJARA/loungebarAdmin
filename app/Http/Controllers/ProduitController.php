@@ -29,7 +29,7 @@ class ProduitController extends Controller
         $query->orderBy('peremption', 'DESC');
     
         // Paginer par 10 éléments par page (ajustez selon vos besoins)
-        $fullproduit = $query->paginate(10);
+        $fullproduit = $query->paginate(20);
         // Passez les produits filtrés à la vue
         return view('produit', compact('fullproduit'));
     }

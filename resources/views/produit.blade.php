@@ -19,7 +19,6 @@
   <link href="{{asset('css/nucleo-svg.css')}}" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="{{asset('css/argon-dashboard.css?v=2.0.4')}}" rel="stylesheet" />
-
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -110,44 +109,21 @@
                         <span class="text-secondary text-xs font-weight-bold"></span>
                       </td>
                       <td class="align-middle">
-                    <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('modifierProduit', ['id' => $post->id_produit]) }}"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Modifier</a>
-                
+                      <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('modifierProduit', ['id' => $post->id_produit]) }}"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Modifier</a>  
                       </td>
                       <td class="align-middle">
-                      <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;" data-id="" data-toggle="modal" data-target="#myModal"><i class="far fa-trash-alt me-2"></i>Supprimer</a>
-                        <div class="modal fade" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmationModalLabel">Confirmation de la suppression</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    Êtes-vous sûr de vouloir supprimer cet élément ?
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-danger" onclick="">Valider</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Le formulaire de suppression réel reste le même -->
-    <form id="" action="{{ route('supprimerProduit', ['id' => $post->id_produit]) }}" method="POST" style="display: none;">
-        @csrf
-        @method('put')
-    </form>
-                      </td>
+                      <!-- <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="{{ route('supprimerProduit', ['id' => $post->id_produit]) }}"><i class="far fa-trash-alt me-2"></i>Supprimer</a> -->
+                      <form action="{{ route('supprimerProduit', ['id' => $post->id_produit]) }}" method="POST">
+    @csrf
+    @method('PUT')
+    <!-- Vos champs et boutons ici -->
+    <button class="btn btn-link text-danger text-gradient px-3 mb-0" type="submit"><i class="far fa-trash-alt me-2"></i>Supprimer</button>
+</form> 
+                    </td>
                     </tr>
                     @endforeach
-                    
-    <!-- {{ $fullproduit->links() }} -->
-   
-
                     </tbody>
                 </table>
-                
               </div>
             </div>
           </div>
@@ -162,6 +138,7 @@
   </main>
  
   <!--   Core JS Files   -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{asset('js/core/popper.min.js')}}"></script>
   <script src="{{asset('js/core/bootstrap.min.js')}}"></script>
   <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
