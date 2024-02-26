@@ -113,13 +113,15 @@
                       </td>
                       <td class="align-middle">
                       <!-- <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="{{ route('supprimerProduit', ['id' => $post->id_produit]) }}"><i class="far fa-trash-alt me-2"></i>Supprimer</a> -->
-                      <form action="{{ route('supprimerProduit', ['id' => $post->id_produit]) }}" method="POST">
+                    <!-- Dans votre vue Blade -->
+<form action="{{ route('supprimerProduit', ['id' => $post->id_produit]) }}" method="POST">
     @csrf
-    @method('PUT')
-    <!-- Vos champs et boutons ici -->
-    <button class="btn btn-link text-danger text-gradient px-3 mb-0" type="submit"><i class="far fa-trash-alt me-2"></i>Supprimer</button>
-</form> 
-                    </td>
+    @method('DELETE')
+    <button class="btn btn-link text-danger text-gradient px-3 mb-0" type="submit">
+        <i class="far fa-trash-alt me-2"></i>Supprimer
+    </button>
+</form>
+    </td>
                     </tr>
                     @endforeach
                     </tbody>

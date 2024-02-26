@@ -150,7 +150,7 @@ class ProduitController extends Controller
     public function supprimerProduit($id)
     {
         // Trouver le produit
-        $produit = Produit::findOrFail($id);
+        $produit = FullProduit::findOrFail($id);
     
         // Mettre à jour l'état du produit au lieu de le supprimer
         $produit->update([

@@ -19,6 +19,7 @@ class Produit extends Model
         'type_unite',
         'id_categorie',
         'created_at', 
+        'etat', 
     ];
 
 }

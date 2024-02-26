@@ -39,7 +39,7 @@ Route::get('/ajout-produit', [ProduitController::class, 'ajoutProduit'])->name('
 Route::post('/ajouter-produit', [ProduitController::class, 'ajouterProduit']);
 Route::get('/modifier-produits/{id}', [ProduitController::class, 'modifierProduit'])->name('modifierProduit');
 Route::put('/modifier-produit/{id}', [ProduitController::class, 'mettreAjourProduit']);
-Route::put('/supprimer-produit/{id}', [ProduitController::class, 'supprimerProduit'])->name('supprimerProduit');
+Route::put('/supprimer-produit/{id}', 'ProduitController@supprimerProduit')->name('supprimerProduit');
 
 
 Route::get('/categorie', [CategorieController::class, 'index'])->name('categorie');
