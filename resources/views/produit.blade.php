@@ -53,6 +53,7 @@
               <!-- <input type="number" name="stock_min" placeholder="Stock minimum">
     <input type="number" name="prix_max" placeholder="Prix maximum"> -->
     <button class="btn-success" type="submit">Rechercher</button>
+</form>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
@@ -113,10 +114,10 @@
                       </td>
                       <td class="align-middle">
                       <!-- <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="{{ route('supprimerProduit', ['id' => $post->id_produit]) }}"><i class="far fa-trash-alt me-2"></i>Supprimer</a> -->
-                    <!-- Dans votre vue Blade -->
+                   
 <form action="{{ route('supprimerProduit', ['id' => $post->id_produit]) }}" method="POST">
     @csrf
-    @method('DELETE')
+    @method('put')
     <button class="btn btn-link text-danger text-gradient px-3 mb-0" type="submit">
         <i class="far fa-trash-alt me-2"></i>Supprimer
     </button>
